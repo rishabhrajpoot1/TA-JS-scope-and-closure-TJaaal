@@ -1,6 +1,34 @@
 1. Create a function by your choice that accepts a callback function.
 
+```js
+function operation(n, cbFn) {
+  return cbFn(n);
+}
+
+function addTen(num) {
+  return num + 10;
+}
+
+function subTen(num) {
+  return num - 10;
+}
+
+console.log(operation(20, addTen));
+console.log(operation(20, subTen));
+```
+
 2. Create a function by you choice that returns a function reference.
+
+```js
+function OperationReturn() {
+  function inner(num) {
+    return num + 10;
+  }
+  return inner;
+}
+
+OperationReturn();
+```
 
 3. Create a higher order function called `map` that takes two inputs:
    - An array of numbers/string/boolean etc
@@ -10,7 +38,13 @@ Have `map` return a new array filled with values that are the result of the 'cal
 
 ```js
 // Your code goes here
-
+function map(arr, cbFn) {
+  let finalArr = [];
+  for (elem of arr) {
+    finalArr.push(cbFn(elem));
+  }
+  return finalArr;
+}
 // Test Your Code
 function multiplyByTwo(n) {
   return n * 2;
@@ -24,6 +58,11 @@ multiplyByTwo(2); //-> 4
 
 ```js
 // Your code goes here
+function forEach(arr, cbFn) {
+  for (elem of arr) {
+    cbfn(elem);
+  }
+}
 
 // Test Your Code
 let alphabet = '';
@@ -37,6 +76,16 @@ console.log(alphabet); //prints 'abcd'
 5. Create higher-order function called `filter` takes an array and a callback, and runs the callback on each element of the array if the return value of callback is `truthy` store in new array return the new array.
 
 ```js
+function filter(arr, cbFn) {
+  let finalArr = [];
+  for (elem of arr) {
+    if (cbFn(elem)) {
+      finalArr.push(elem);
+    }
+  }
+  return finalArr;
+}
+
 // Test Your Code
 
 var numbers = [1, 3, 5, 4, 7, 89, 234, 20];
